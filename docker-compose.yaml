@@ -3,11 +3,11 @@ services:
   nginx:
     image: nginx:1.25.3-alpine
     ports:
-      - 8000:80
+      - 80:80
     volumes:
       - ./nginx/html:/usr/share/nginx/html
       - ./nginx/conf.d:/etc/nginx/conf.d
-      # - type: bind
-      #   source: nginx/nginx.conf
-      #   target: /etc/nginx/nginx.conf
+      - type: bind
+        source: nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
     restart: always
