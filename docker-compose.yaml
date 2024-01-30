@@ -4,6 +4,8 @@ services:
     image: nginx:1.25.3-alpine
     ports:
       - 80:80
+      - 8080:8080
+      - 7777:7777
     volumes:
       - ./nginx/html:/usr/share/nginx/html
       - ./nginx/conf.d:/etc/nginx/conf.d
@@ -11,3 +13,39 @@ services:
         source: nginx/nginx.conf
         target: /etc/nginx/nginx.conf
     restart: always
+  express_1:
+    build: ./server
+    ports:
+      - 1111:7777
+    environment:
+      - SERVER_ID=1
+    working_dir: /app
+    volumes:
+      - ./server:/app/
+      - /app/node_modules
+    #command: [ "nodemon", "index.js", "--legacy-watch" ]
+    command: [ "npm", "start" ]
+  express_2:
+    build: ./server
+    ports:
+      - 2222:7777
+    environment:
+      - SERVER_ID=2
+    working_dir: /app
+    command: [ "npm", "start" ]
+  express_3:
+    build: ./server
+    ports:
+      - 3333:7777
+    environment:
+      - SERVER_ID=3
+    working_dir: /app
+    command: [ "npm", "start" ]
+  express_4:
+    build: ./server
+    ports:
+      - 4444:7777
+    environment:
+      - SERVER_ID=4
+    working_dir: /app
+    command: [ "npm", "start" ]

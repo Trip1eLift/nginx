@@ -1,0 +1,12 @@
+### Hit load balancer
+GET http://localhost:7777
+
+
+### direct hit server 1
+GET http://localhost:1111
+### direct hit server 2
+GET http://localhost:2222
+### direct hit server 3
+GET http://localhost:3333
+### direct hit server 4
+GET http://localhost:4444
